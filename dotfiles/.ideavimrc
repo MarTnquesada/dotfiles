@@ -1,0 +1,23 @@
+" Set space as leader
+let mapleader = " "
+
+" Regular keymaps
+nmap <C-d> <C-d>zz
+
+" Layout
+nmap <leader>h <action>(HideAllWindows)
+nmap <leader>o <action>(ActivateProjectToolWindow)
+nmap <leader>t <action>(ActivateTerminalToolWindow)
+
+" Debugger
+nmap <leader>dc <action>(DebugClass)
+nmap <leader>dq <action>(Stop)
+nmap <leader>db <action>(ToggleLineBreakpoint)
+
+" Fuzzier
+nmap <leader>ff <action>(com.mituuz.fuzzier.FuzzierVCS)
+nmap <leader>fa <action>(com.mituuz.fuzzier.Fuzzier)
+nmap <leader>fg <action>(com.mituuz.fuzzier.FuzzyGrep)
+
+" Code actions
+nmap <leader>lf <action>(ReformatCode)

@@ -1,0 +1,71 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[\\( ](bold blue)\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$docker_context\
+$c\
+$cpp\
+$golang\
+$java\
+$lua\
+$nodejs\
+$python\
+$rust\
+$zig\
+[\\) ](bold blue)\
+$character
+"""
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
+vimcmd_symbol = "[<](bold green)"
+
+[c]
+symbol = "C "
+
+[cpp]
+symbol = "C++ "
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+
+[docker_context]
+symbol = "docker "
+
+[git_branch]
+symbol = "git "
+
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
+[golang]
+symbol = "go "
+
+[java]
+symbol = "java "
+
+[lua]
+symbol = "lua "
+
+[nodejs]
+symbol = "nodejs "
+
+[python]
+symbol = "py "
+
+[rust]
+symbol = "rs "
+
+[zig]
+symbol = "zig "
