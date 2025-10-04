@@ -1,5 +1,5 @@
-# martin_setup
-My personal dev setup. A lot of choices are due to me needing to work similarly on macOS and Linux. 
+# dotfiles
+My dotfiles (synchronized with GNU Stow) and installation scripts for environments. A lot of choices are due to me needing to work similarly on macOS and Linux. 
 
 ## Fast install
 
@@ -27,7 +27,7 @@ Finally, add my current configuration by copying the starship.toml file from thi
 
 **Editor setup**
 
-I am using nvim v0.11.3 at the moment, with LazyVim as plugin manager. My current configuration can be found within `configs/nvim`. 
+I am using nvim v0.11.3 at the moment, with LazyVim as plugin manager.  
 
 
 ## Shortcut Cheat Sheet
