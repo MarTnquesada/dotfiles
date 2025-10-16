@@ -52,18 +52,29 @@ return {
             vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
           end, 5000)
 
-          opts.desc = "Toggle inlay hints" 
+          opts.desc = "Toggle inlay hints"
           vim.keymap.set('n', '<leader>ih', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
           end, opts)
         end,
+      })
+      vim.lsp.config('pylsp', {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                enabled = false,
+              },
+            },
+          },
+        },
       })
     end,
   },
   {
     "mason-org/mason.nvim",
     config = function()
-      require("mason").setup()
+      require("mason").setup() -- This is also in charge of auto enabling all installed servers, if removed use vim.lsp.enable
     end,
   },
   {
@@ -82,7 +93,7 @@ return {
     config = function()
       require("conform").setup({
         default_format_opts = { lsp_format = "fallback" }, -- Many languages can be formatted directly by their LSP
-        formatters_by_ft = {                           -- but some can't, so conform is for those ones
+        formatters_by_ft = {                               -- but some can't, so conform is for those ones
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
           typescript = { "prettier" },

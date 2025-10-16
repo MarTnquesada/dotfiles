@@ -17,8 +17,12 @@ return {
       auto_reload_on_write = true,
 
       view = {
-        width = 40,
         side = "left",
+        width = {
+          min = 20,
+          max = 40,
+          padding = 2,
+        },
       },
 
       renderer = {

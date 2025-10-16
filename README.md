@@ -97,6 +97,13 @@ Command (command + number + movement)
 | `>` | Tab selection forward |
 | `gv` | To re-select previously selected area |
 
+Command-command (: + stuff) 
+|  Command   | Action |
+| -------- | ------- |
+| `:split` | Create new horizontal split with current context | 
+| `:vsplit` | Create new vertical split with current context | 
+
+
 **Neovim Plugins**
 
 LSP (Language Server Protocol)
