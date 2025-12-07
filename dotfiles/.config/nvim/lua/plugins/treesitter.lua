@@ -6,21 +6,21 @@ return {
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
         "rust",
-	      "python",
+        "python",
         "lua",
         "vim",
         "vimdoc",
-        "toml",    
+        "toml",
         "json",
         "markdown",
       },
-      
+
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
-      
+
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
-      
+
       highlight = {
         enable = true,
         -- Disable slow treesitter highlight for large files
@@ -32,12 +32,12 @@ return {
           end
         end,
       },
-      
+
       indent = {
         enable = true,
       }
     })
-    
+
     -- some stuff so code folding uses treesitter instead of older methods
     vim.opt.foldmethod = "expr"
     vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

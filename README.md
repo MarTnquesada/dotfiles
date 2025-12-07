@@ -60,7 +60,7 @@ Movement
 | `$` | Go to the end of the line |
 | `%` | Move cursor to matching bracket |
 | `f` + symbol | Go to symbol in line. `;` forwards, `,` backwards |
-| `t` + symbol | Go to after symbol in line. `;` forwards, `,` backwards |
+| `t` + symbol | Go to before symbol in line. `;` forwards, `,` backwards |
 | `{\|}` | Go to previous/next paragraph |
 | `<C-d>` | Jump half page down |
 | `<C-u>` | Jump half page up |
@@ -82,20 +82,24 @@ Command (command + number + movement)
 | `O` | Insert new line above |
 | `d` | Delete |
 | `y` | Yank |  
-| `[d\|y\|v]iw` | Delete/yank/select current word |
 | `p` | Paste | 
 | `x` | Remove current character |
 | `r` | Replace curent character | 
+| `[d\|y\|v]iw` | Delete/yank/select current word |
+| `[d\|y\|v]ip` | Delete/yank/select current paragraph (delimited by blank lines) |
 | `cc` | Delete line and enter insert mode | 
 | `c$` | Delete to the end of the line and enter insert mode | 
 | `cw` | Delete to the end of the word and enter insert mode | 
 | `ciw` | Delete entire word and enter insert mode | 
+| `vi` | Select line | 
 | `.` | Repeat last command | 
 | `[v\|y\|d]i[}\|]]` | Select/yank/delete everything inside the current brackets |
 | `[v\|y\|d]a[}\|]]` | Select/yank/delete everything inside the current brackets, including them |
 | `<C-w>w` | Jump into floating window |
 | `>` | Tab selection forward |
 | `gv` | To re-select previously selected area |
+| `gcc` | Toggle comment for current line |
+| `gc` | Toggle comment for selection |
 
 Command-command (: + stuff) 
 |  Command   | Action |
@@ -138,7 +142,7 @@ nvim-tree (File Explorer)
 | `R` | Refresh tree |
 | `q` | Close nvim-tree |
 
-Telescope (Fuzzy Finder)
+fzf-lua (Picker, fuzzy finder, etc.)
 | Key | Action |
 | --- | ------ |
 | `<leader>ff` | Find files |
@@ -149,7 +153,7 @@ Telescope (Fuzzy Finder)
 | `<C-c>` | Close telescope |
 | `<CR>` | Select item |
 
-Blink (completion)
+Blink (Code completion)
 | Key | Action |
 | --- | ------ |
 | `<C-space>` | Show/hide documentation |

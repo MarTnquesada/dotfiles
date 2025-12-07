@@ -3,7 +3,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Smart toggles for terminal
-vim.keymap.set({ "n", "t" }, "<leader>t", function()
+vim.keymap.set( "n", "<leader>t", function()
   -- Toggle out of current terminal
   if vim.bo.buftype == "terminal" then
     vim.cmd("stopinsert")

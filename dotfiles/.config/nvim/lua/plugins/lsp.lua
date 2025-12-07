@@ -69,6 +69,15 @@ return {
           },
         },
       })
+      vim.lsp.config('basedpyright', {
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "basic",
+            },
+          },
+        },
+      })
     end,
   },
   {
@@ -84,7 +93,7 @@ return {
         -- NB: These will FAIL if you don't have the language toolchains installed!
         -- NB: Make sure to add more from this list!
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-        ensure_installed = { "ruff", "pylsp", "eslint", "rust_analyzer", "lua_ls" }
+        ensure_installed = { "ruff", "eslint", "rust_analyzer", "lua_ls" }
       })
     end,
   },
@@ -92,8 +101,12 @@ return {
     "stevearc/conform.nvim",
     config = function()
       require("conform").setup({
-        default_format_opts = { lsp_format = "fallback" }, -- Many languages can be formatted directly by their LSP
-        formatters_by_ft = {                               -- but some can't, so conform is for those ones
+        format_on_save = { -- Auto-format everything, use LSP when no explicit conform formatter is set
+          timeout_ms = 2000,
+          lsp_fallback = true,
+        },
+        default_format_opts = { lsp_format = "fallback" },
+        formatters_by_ft = {
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
           typescript = { "prettier" },
@@ -101,6 +114,7 @@ return {
           json = { "prettier" },
           html = { "prettier" },
           css = { "prettier" },
+          -- sql = { "pg_format" },
         },
       })
     end,
