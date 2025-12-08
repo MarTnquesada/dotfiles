@@ -58,6 +58,7 @@ return {
           end, opts)
         end,
       })
+      -- Use pylsp for LSP actions and ty only for type checking (since it is still fairly undercooked)
       vim.lsp.config('pylsp', {
         settings = {
           pylsp = {
@@ -69,6 +70,19 @@ return {
           },
         },
       })
+      vim.lsp.config('ty', {
+        settings = {
+          ty = {
+            -- Turn off language services (completion, hover, goto, etc.)
+            disableLanguageServices = true,
+
+            -- OPTIONAL: how broad diagnostics should be
+            -- "openFilesOnly" is the default, you can pick "workspace" if you want:
+            -- diagnosticMode = "workspace",
+          },
+        },
+      })
+      -- Not using basedpyright right now because it is slow but if I did it'd be this way
       vim.lsp.config('basedpyright', {
         settings = {
           basedpyright = {
@@ -93,7 +107,7 @@ return {
         -- NB: These will FAIL if you don't have the language toolchains installed!
         -- NB: Make sure to add more from this list!
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-        ensure_installed = { "ruff", "eslint", "rust_analyzer", "lua_ls" }
+        ensure_installed = { "pylsp", "ty", "ruff", "eslint", "rust_analyzer", "lua_ls" }
       })
     end,
   },
