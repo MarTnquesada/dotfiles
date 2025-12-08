@@ -13,7 +13,6 @@ return {
 
     -- Set up nvim-tree with minimal configuration
     require("nvim-tree").setup({
-      -- Automatically close nvim-tree when it's the last window
       auto_reload_on_write = true,
 
       view = {
@@ -26,6 +25,7 @@ return {
       },
 
       renderer = {
+        highlight_git = "name",
         -- Show git status icons
         icons = {
           git_placement = "before",
@@ -34,10 +34,9 @@ return {
             folder = true,
             folder_arrow = true,
             git = true,
+            modified = true,
           },
         },
-        -- Highlight opened files
-        highlight_opened_files = "name",
       },
 
       -- Automatically open nvim-tree when starting nvim with a directory
@@ -63,7 +62,7 @@ return {
       actions = {
         open_file = {
           -- Close nvim-tree when opening a file
-          quit_on_open = false,
+          quit_on_open = true,
           -- Resize other windows when nvim-tree opens/closes
           resize_window = true,
         },

@@ -19,6 +19,28 @@ return {
 
       dap_python.setup("python3")
 
+      -- Custom Python DAP configurations
+      dap.configurations.python = dap.configurations.python or {}
+
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "launch",
+        name = "pytest: all tests",
+        module = "pytest",
+        args = { "-vv" },
+        cwd = vim.fn.getcwd(), -- run from current directory (usually the project root)
+      })
+
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "launch",
+        name = "pytest: current file",
+        module = "pytest",
+        args = { "-vv", "${file}" },
+        cwd = vim.fn.getcwd(),
+      })
+
+      -- Symbols
       vim.fn.sign_define("DapBreakpoint", {
         text = "",
         texthl = "DiagnosticSignError",
