@@ -46,6 +46,10 @@ return {
           vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
           opts.desc = "Show Diagnostics in Location List"
           vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts)
+          vim.diagnostic.config({
+            virtual_text = true, -- inline text at end of line
+            -- virtual_lines = true,  -- (optional) show message(s) as extra lines below
+          })
 
           -- Inlay hints (delayed because they need to wait for LSP, otherwise they don't show)
           vim.defer_fn(function()
@@ -58,39 +62,15 @@ return {
           end, opts)
         end,
       })
-      -- Use pylsp for LSP actions and ty only for type checking (since it is still fairly undercooked)
-      vim.lsp.config('pylsp', {
+      -- Config vim as a lua global
+      vim.lsp.config("lua_ls", {
         settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = {
-                enabled = false,
-              },
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
             },
           },
-        },
-      })
-      vim.lsp.config('ty', {
-        settings = {
-          ty = {
-            -- Turn off language services (completion, hover, goto, etc.)
-            disableLanguageServices = true,
-
-            -- OPTIONAL: how broad diagnostics should be
-            -- "openFilesOnly" is the default, you can pick "workspace" if you want:
-            -- diagnosticMode = "workspace",
-          },
-        },
-      })
-      -- Not using basedpyright right now because it is slow but if I did it'd be this way
-      vim.lsp.config('basedpyright', {
-        settings = {
-          basedpyright = {
-            analysis = {
-              typeCheckingMode = "basic",
-            },
-          },
-        },
+        }
       })
     end,
   },
@@ -104,10 +84,10 @@ return {
     "mason-org/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        -- NB: These will FAIL if you don't have the language toolchains installed!
-        -- NB: Make sure to add more from this list!
+        -- These will FAIL if you don't have the language toolchains installed!
+        -- Make sure to add more from this list!
         -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-        ensure_installed = { "pylsp", "ty", "ruff", "eslint", "rust_analyzer", "lua_ls" }
+        ensure_installed = { "ty", "ruff", "eslint", "rust_analyzer", "lua_ls" }
       })
     end,
   },
