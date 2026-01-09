@@ -48,6 +48,16 @@ return {
       function() require("fzf-lua").git_branches() end,
       desc = "Git branches (fzf-lua)",
     },
+    {
+      "<leader>gc",
+      function() require("fzf-lua").git_commits() end,
+      desc = "Git commits (fzf-lua)",
+    },
+    {
+      "<leader>gC",
+      function() require("fzf-lua").git_bcommits() end,
+      desc = "Git commits that affect current buffer (fzf-lua)",
+    },
 
     -- Dap
     {
