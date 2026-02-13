@@ -62,12 +62,19 @@ return {
           end, opts)
         end,
       })
-      -- Config vim as a lua global
+      -- Config lua_ls for Neovim development
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
             diagnostics = {
               globals = { "vim" },
+            },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME .. "/lua",
+                "${3rd}/luv/library",
+              },
             },
           },
         }

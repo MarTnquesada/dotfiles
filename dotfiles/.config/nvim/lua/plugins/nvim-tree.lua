@@ -15,6 +15,16 @@ return {
     require("nvim-tree").setup({
       auto_reload_on_write = true,
 
+      filesystem_watchers = {
+        enable = true,
+        debounce_delay = 50,
+      },
+
+      update_focused_file = {
+        enable = true,
+        update_root = false,
+      },
+
       view = {
         side = "left",
         width = {
@@ -49,7 +59,7 @@ return {
       git = {
         enable = true,
         ignore = false, -- Show files in .gitignore
-        timeout = 400,
+        timeout = 600,
       },
 
       -- File filtering
@@ -62,7 +72,7 @@ return {
       actions = {
         open_file = {
           -- Close nvim-tree when opening a file
-          quit_on_open = true,
+          quit_on_open = false,
           -- Resize other windows when nvim-tree opens/closes
           resize_window = true,
         },

@@ -2,33 +2,39 @@
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Smart toggles for terminal
-vim.keymap.set( "n", "<leader>t", function()
-  -- Toggle out of current terminal
-  if vim.bo.buftype == "terminal" then
-    vim.cmd("stopinsert")
-    vim.cmd("wincmd p")
+local function is_user_terminal(buf)
+  return vim.bo[buf].buftype == "terminal" and vim.b[buf].user_terminal
+end
+
+-- Smart toggles for terminal (excludes claude-code terminal)
+vim.keymap.set("n", "<leader>t", function()
+  -- Toggle out if in user terminal
+  if is_user_terminal(0) then
+    vim.cmd("stopinsert | wincmd p")
     return
   end
-  -- Else, focus on existing terminal
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.bo[buf].buftype == "terminal" then
-      vim.api.nvim_set_current_win(win)
+  -- Find existing user terminal buffer
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(buf) and is_user_terminal(buf) then
+      local win = vim.fn.bufwinid(buf)
+      if win ~= -1 then
+        vim.api.nvim_set_current_win(win)
+      else
+        vim.cmd("rightbelow 15split")
+        vim.api.nvim_set_current_buf(buf)
+      end
       vim.cmd("startinsert")
       return
     end
   end
-  -- Or create one if needed
-  vim.cmd("rightbelow vsplit")
-  vim.cmd("term")
+  -- Create new terminal
+  vim.cmd("rightbelow 15split | term")
+  vim.b.user_terminal = true
   vim.cmd("startinsert")
-end, { desc = "Terminal split on the right" })
+end, { desc = "Terminal split" })
 
--- Human terminal mappings
-local term_opts = { silent = true, desc = "Terminal control" }
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], term_opts)
-vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], term_opts)
-vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], term_opts)
-vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], term_opts)
-vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], term_opts)
+-- Terminal navigation
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
+for _, key in ipairs({ "h", "j", "k", "l" }) do
+  vim.keymap.set("t", "<C-" .. key .. ">", [[<C-\><C-n><C-w>]] .. key, { silent = true })
+end
