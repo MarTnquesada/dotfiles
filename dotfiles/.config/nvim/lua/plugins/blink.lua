@@ -5,13 +5,17 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    sources = {
+      -- Not including buffer as a source removes plain text completions
+      default = { 'lsp', 'path', 'snippets' },
+    },
     signature = { enabled = true },
     keymap = {
       preset = 'default',
       ['<Tab>'] = { 'select_and_accept', 'fallback' },
     },
     completion = {
-      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      documentation = { auto_show = true, auto_show_delay_ms = 400 },
       menu = {
         draw = {
           columns = {

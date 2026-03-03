@@ -20,7 +20,7 @@ vim.keymap.set("n", "<leader>t", function()
       if win ~= -1 then
         vim.api.nvim_set_current_win(win)
       else
-        vim.cmd("rightbelow 15split")
+        vim.cmd("rightbelow 60vsplit")
         vim.api.nvim_set_current_buf(buf)
       end
       vim.cmd("startinsert")
@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>t", function()
     end
   end
   -- Create new terminal
-  vim.cmd("rightbelow 15split | term")
+  vim.cmd("rightbelow 60vsplit | term")
   vim.b.user_terminal = true
   vim.cmd("startinsert")
 end, { desc = "Terminal split" })

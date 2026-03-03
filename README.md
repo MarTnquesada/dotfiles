@@ -85,7 +85,8 @@ Command (command + number + movement)
 | `p` | Paste | 
 | `x` | Remove current character |
 | `r` | Replace curent character | 
-| `[d\|y\|v]iw` | Delete/yank/select current word |
+| `[d\|y\|v]iw` | Delete/yank/select everyting inside the next word |
+| `[d\|y\|v]iq` | Delete/yank/select everything inside the next quotes |
 | `[d\|y\|v]ip` | Delete/yank/select current paragraph (delimited by blank lines) |
 | `cc` | Delete line and enter insert mode | 
 | `c$` | Delete to the end of the line and enter insert mode | 
