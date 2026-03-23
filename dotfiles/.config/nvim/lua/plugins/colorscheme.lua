@@ -34,3 +34,15 @@ return {
     require('bamboo').load()
   end,
 }
+
+-- return {
+--   "miikanissi/modus-themes.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require('modus-themes').setup {
+--       -- optional configuration here
+--     }
+--     require('modus-themes').load()
+--   end,
+-- }

@@ -1,0 +1,4 @@
+font-size = 14
+keybind = shift+enter=text:\x1b\r
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+term = xterm-256color
