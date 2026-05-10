@@ -36,5 +36,6 @@ end, { desc = "Terminal split" })
 -- Terminal navigation
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 for _, key in ipairs({ "h", "j", "k", "l" }) do
+  vim.keymap.set("n", "<C-" .. key .. ">", "<C-w>" .. key, { silent = true })
   vim.keymap.set("t", "<C-" .. key .. ">", [[<C-\><C-n><C-w>]] .. key, { silent = true })
 end

@@ -1,3 +1,13 @@
+vim.api.nvim_create_autocmd("WinLeave", {
+  callback = function()
+    local name = vim.api.nvim_buf_get_name(0)
+    if vim.bo.buftype == "terminal" and name:match("claude") then
+      local line_count = vim.api.nvim_buf_line_count(0)
+      pcall(vim.api.nvim_win_set_cursor, 0, { line_count, 0 })
+    end
+  end,
+})
+
 return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
@@ -5,6 +15,17 @@ return {
     focus_after_send = true,
     terminal = {
       split_side = "left",
+      -- snacks_win_opts = {
+      --   position = "float",
+      --   width = 0.6,
+      --   height = 0.6,
+      --   border = "double",
+      --   backdrop = 80,
+      --   keys = {
+      --     claude_hide = { "<Esc>", function(self) self:hide() end, mode = "t", desc = "Hide" },
+      --     claude_close = { "q", "close", mode = "n", desc = "Close" },
+      --   },
+      -- },
     },
   },
   keys = {
