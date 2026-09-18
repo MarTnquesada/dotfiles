@@ -18,17 +18,24 @@
   "model": "opus",
   "statusLine": {
     "type": "command",
-    "command": "bash \"/Users/martinquesada/.claude/plugins/marketplaces/caveman/hooks/caveman-statusline.sh\""
+    "command": "bash \"$HOME/.claude/plugins/marketplaces/caveman/hooks/caveman-statusline.sh\"; bash \"$HOME/.claude/plugins/marketplaces/ponytail/hooks/ponytail-statusline.sh\""
   },
   "enabledPlugins": {
     "slack@claude-plugins-official": true,
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
       "source": {
         "source": "github",
         "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
       }
     }
   },
